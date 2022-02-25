@@ -8,5 +8,5 @@ class Todo(models.Model):
    status = models.BooleanField(default=False)
 
    def __str__(self):
-      return f"{self.text} - {self.status}"
+      return f"{self.user} - {self.pk} - {self.text} - {self.status}"
   

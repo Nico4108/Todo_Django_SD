@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Todo</title>
-</head>
-<body>
-   <h1>Todo</h1>
+{% extends "todo_app/base.html" %}
+
+{% block content %}
    <hr />
       <ul>
       {% for todo in todos  %}
             <li>
                <form action="{% url 'todo_app:change_status' %}" method="POST">
                   {% csrf_token %}
-		  <input type="checkbox" name="checked" {% if todo.status %}checked{% endif %} >
+                  <input type="checkbox" name="checked" {% if todo.status %}checked{% endif %} >
                   <button>Update</button>
                   <button formaction="{% url 'todo_app:delete_todo' %}">Delete</button>
                   <input type="hidden" name="pk" value="{{ todo.pk }}">
@@ -30,5 +24,5 @@
    </form>
    <hr />
    <a href="{% url 'todo_app:completed_todos' %}">Completed Todos</a>
-</body>
-</html>
+
+{% endblock %}

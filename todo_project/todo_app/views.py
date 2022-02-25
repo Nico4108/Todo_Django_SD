@@ -27,7 +27,8 @@ def change_status(request):
    todo.save()
    if 'completed_todos' in request.META['HTTP_REFERER']:
       return HttpResponseRedirect(reverse('todo_app:completed_todos'))
-   return HttpResponseRedirect(reverse('todo_app:index'))
+   else:
+      return HttpResponseRedirect(reverse('todo_app:index'))
 
 def completed_todos(request):
    todos = Todo.objects.filter(status=True)
